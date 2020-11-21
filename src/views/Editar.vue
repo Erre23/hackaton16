@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form @submit.prevent="updateUserAction({id: user.id,
+        <form @submit.prevent="actualizar({id: user.id,
             nombre: user.nombre,
             apellido: user.apellido,
             edad: user.edad,
@@ -42,6 +42,7 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import Swal from 'sweetalert2'
 export default {
     Name:'Editar',
     data() {
@@ -50,7 +51,22 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getUserAction', 'updateUserAction'])
+        ...mapActions(['getUserAction', 'updateUserAction']),
+        actualizar(user){
+            Swal.fire({
+            title: '¿Estas seguro de actualizar los datos del usuario?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, actualizar',
+            cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.updateUserAction(user)
+                }
+            })
+        }
     },
     computed: {
         ...mapState(['user'])

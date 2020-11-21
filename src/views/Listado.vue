@@ -52,7 +52,7 @@ export default {
             Swal.fire({
             title: '¿Estas seguro de eliminar el usuario?',
             text: 'No se podrá revertir esta acción',
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

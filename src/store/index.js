@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { v4 as uuidv4 } from 'uuid';
-import router from './../router'
+import router from './../router';
+import Swal from 'sweetalert2'
 
 Vue.use(Vuex)
 
@@ -49,12 +50,25 @@ export default new Vuex.Store({
           },
           body: JSON.stringify(user)
         }).then(res => {
-         router.push('/listado');
+          Swal.fire({
+            icon: 'success',
+            title: 'El usuario fue agregado',
+            showConfirmButton: false,
+            timer: 1500
+          }).then(() => {
+            router.push('/listado');
+          })
       })
     },
     deleteUserAction({commit}, id) {
       fetch(`http://localhost:4000/users/${id}`, {method: 'DELETE'}).then(res => {
          commit('deleteUserMutation', id);
+         Swal.fire({
+          icon: 'success',
+          title: 'El usuario fue eliminado',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
     },
     getUserAction({commit}, id) {
@@ -81,8 +95,15 @@ export default new Vuex.Store({
         },
         body: JSON.stringify(user)
       }).then(res => {
-         commit('updateUserMutation');
-         router.push('/listado');
+        Swal.fire({
+          icon: 'success',
+          title: 'Los datos del usuario fueron actualizados',
+          showConfirmButton: false,
+          timer: 1500
+        }).then(() => {
+          commit('updateUserMutation');
+          router.push('/listado');
+        })
       })
     },
   },
