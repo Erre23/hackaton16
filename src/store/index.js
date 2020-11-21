@@ -12,7 +12,7 @@ export default new Vuex.Store({
     user: {
       nombre: '',
       apellido: '',
-      edad: 0,
+      edad: null,
       email: '',
       celular: '',
       id: ''
@@ -32,7 +32,7 @@ export default new Vuex.Store({
       state.user = {
         nombre: '',
         apellido: '',
-        edad: 0,
+        edad: null,
         email: '',
         celular: '',
         id: ''
@@ -105,6 +105,10 @@ export default new Vuex.Store({
           router.push('/listado');
         })
       })
+    },
+    updateUserActionCancel({commit}) {
+      commit('updateUserMutation');
+      router.push('/listado');
     },
   },
   modules: {

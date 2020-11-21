@@ -32,7 +32,8 @@
                         <input class="form-control" placeholder="Ingrese su Celular" v-model="user.celular">
                     </div>
                     <div class="form-group text-center mb-0">
-                        <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+                        <button class="btn btn-primary mr-1" type="submit">Guardar Cambios</button>
+                        <button class="btn btn-danger" @click.prevent="updateUserActionCancel()">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -51,7 +52,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['getUserAction', 'updateUserAction']),
+        ...mapActions(['getUserAction', 'updateUserAction', 'updateUserActionCancel']),
         actualizar(user){
             Swal.fire({
             title: '¿Estas seguro de actualizar los datos del usuario?',

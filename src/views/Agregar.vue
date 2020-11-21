@@ -31,7 +31,8 @@
                         <input class="form-control" placeholder="Ingrese su Celular" v-model="celular">
                     </div>
                     <div class="form-group text-center mb-0">
-                        <button class="btn btn-primary" type="submit">Agregar</button>
+                        <button class="btn btn-primary mr-1" type="submit">Agregar</button>
+                        <button class="btn btn-danger" @click.prevent="cancelar()">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -41,19 +42,23 @@
 
 <script>
 import { mapActions } from 'vuex'
+import route from './../router'
 export default {
     Name:'Agregar',
     data() {
         return {
             nombre: '',
             apellido: '',
-            edad: 0,
+            edad: null,
             email: '',
             celular: ''
         }
     },
     methods: {
-        ...mapActions(['createUserAction'])
+        ...mapActions(['createUserAction']),
+        cancelar() {
+            route.push('/listado');
+        }
     }
 }
 </script>
