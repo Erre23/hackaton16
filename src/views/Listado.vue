@@ -33,7 +33,7 @@
                                 <button class="btn btn-warning">Editar</button>
                             </router-link>
                         </td>
-                        <td><button class="btn btn-danger" @click.prevent="deleteUserAction(user.id)">Eliminar</button></td>
+                        <td><button class="btn btn-danger" @click.prevent="eliminar(user.id)">Eliminar</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -43,10 +43,27 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
+import Swal from 'sweetalert2'
 export default {
     name: 'Listado',
     methods: {
-        ...mapActions(['getUsersAction', 'deleteUserAction'])
+        ...mapActions(['getUsersAction', 'deleteUserAction']),
+        eliminar(id){
+            Swal.fire({
+            title: '¿Estas seguro de eliminar el usuario?',
+            text: 'No se podrá revertir esta acción',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.deleteUserAction(id)
+                }
+            })
+        }
     },
     computed: {
         ...mapState(['users'])
