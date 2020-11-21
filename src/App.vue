@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1 class="bg-dark text-white">Hackaton 16 - Por Eduardo Rodríguez</h1>
     <div id="nav">
       <router-link to="/">Preguntas</router-link> |
       <router-link to="/listado">Usuarios</router-link>
